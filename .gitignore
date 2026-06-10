@@ -1,0 +1,94 @@
+# =========================
+# IntelliJ IDEA
+# =========================
+.idea/
+*.iml
+
+# =========================
+# Maven
+# =========================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.properties
+!mvnw
+!mvnw.cmd
+
+# =========================
+# Gradle (if used)
+# =========================
+.gradle/
+build/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Environment Variables
+# =========================
+.env
+.env.*
+
+# =========================
+# Application Secrets
+# =========================
+application-local.yml
+application-local.properties
+
+# =========================
+# Temporary Files
+# =========================
+*.tmp
+*.swp
+*.swo
+
+# =========================
+# Java
+# =========================
+*.class
+
+# =========================
+# Spring Boot
+# =========================
+spring.log
+
+# =========================
+# Kafka Local Data
+# =========================
+kafka-logs/
+zookeeper/
+
+# =========================
+# Docker Volumes
+# =========================
+data/
+mysql-data/
+postgres-data/
+elasticsearch-data/
+
+# =========================
+# Test Reports
+# =========================
+surefire-reports/
+failsafe-reports/
+
+# =========================
+# Coverage Reports
+# =========================
+coverage/
+jacoco.exec
+
+# =========================
+# VS Code (if opened)
+# =========================
+.vscode/

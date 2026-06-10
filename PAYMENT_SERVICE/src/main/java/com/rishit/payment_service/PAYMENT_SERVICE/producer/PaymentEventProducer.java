@@ -1,0 +1,34 @@
+package com.rishit.payment_service.PAYMENT_SERVICE.producer;
+
+import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentCompleteEvent;
+import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentFailedEvent;
+import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
+
+@Component
+@RequiredArgsConstructor
+public class PaymentEventProducer {
+
+    private final KafkaTemplate<String, Object> kafkaTemplate;
+
+    public void publishPaymentCompleted(
+            PaymentCompleteEvent event) {
+
+        kafkaTemplate.send(
+                "payment-completed",
+                event.getOrderId().toString(),
+                event
+        );
+    }
+
+    public void publishPaymentFailed(
+            PaymentFailedEvent event) {
+
+        kafkaTemplate.send(
+                "payment-failed",
+                event.getOrderId().toString(),
+                event
+        );
+    }
+}
