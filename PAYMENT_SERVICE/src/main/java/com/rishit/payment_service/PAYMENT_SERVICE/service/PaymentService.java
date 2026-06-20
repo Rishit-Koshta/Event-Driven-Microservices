@@ -3,7 +3,7 @@ package com.rishit.payment_service.PAYMENT_SERVICE.service;
 import com.rishit.payment_service.PAYMENT_SERVICE.entity.Payment;
 import com.rishit.payment_service.PAYMENT_SERVICE.entity.PaymentStatus;
 import com.rishit.payment_service.PAYMENT_SERVICE.producer.PaymentEventProducer;
-import com.rishit.payment_service.PAYMENT_SERVICE.event.OrderCreatedEvent;
+import com.rishit.payment_service.PAYMENT_SERVICE.event.OrderCreateEvent;
 import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentCompleteEvent;
 import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentFailedEvent;
 import com.rishit.payment_service.PAYMENT_SERVICE.repository.PaymentRepository;
@@ -20,7 +20,7 @@ public class PaymentService {
     private final PaymentEventProducer producer;
 
     public void processPayment(
-            OrderCreatedEvent event) {
+            OrderCreateEvent event) {
 
         boolean paymentSuccess = true;
 

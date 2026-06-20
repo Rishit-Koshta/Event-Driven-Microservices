@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderCreatedEvent {
+public class OrderCreateEvent {
 
     private Long orderId;
     private Long userId;
