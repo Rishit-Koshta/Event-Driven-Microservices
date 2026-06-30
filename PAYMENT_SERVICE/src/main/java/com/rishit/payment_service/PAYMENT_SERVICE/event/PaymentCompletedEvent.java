@@ -7,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PaymentFailedEvent {
+public class PaymentCompletedEvent {
 
     private Long orderId;
     private Long userId;
-    private String reason;
+    private Double amount;
 }

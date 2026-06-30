@@ -7,20 +7,22 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "payment_db")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double amount;
-    private LocalDateTime createdAt;
+
     private Long orderId;
+
+    private Long userId;
+
+    private Double amount;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
