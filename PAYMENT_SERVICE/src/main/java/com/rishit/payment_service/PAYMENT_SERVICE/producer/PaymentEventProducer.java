@@ -1,8 +1,7 @@
 package com.rishit.payment_service.PAYMENT_SERVICE.producer;
 
-import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentCompleteEvent;
-import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentCompletedEvent;
-import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentFailedEvent;
+import com.rishit.common.event.PaymentCompletedEvent;
+import com.rishit.common.event.PaymentFailedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;

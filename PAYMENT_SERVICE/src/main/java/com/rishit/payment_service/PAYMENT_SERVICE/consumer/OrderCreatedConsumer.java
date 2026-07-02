@@ -1,6 +1,6 @@
 package com.rishit.payment_service.PAYMENT_SERVICE.consumer;
 
-import com.rishit.payment_service.PAYMENT_SERVICE.event.OrderCreateEvent;
+import com.rishit.common.event.OrderCreateEvent;
 import com.rishit.payment_service.PAYMENT_SERVICE.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;

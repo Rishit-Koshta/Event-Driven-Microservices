@@ -1,16 +1,14 @@
 package com.rishit.payment_service.PAYMENT_SERVICE.service;
 
+import com.rishit.common.event.OrderCreateEvent;
+import com.rishit.common.event.PaymentCompletedEvent;
+import com.rishit.common.event.PaymentFailedEvent;
 import com.rishit.payment_service.PAYMENT_SERVICE.entity.Payment;
 import com.rishit.payment_service.PAYMENT_SERVICE.entity.PaymentStatus;
-import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentCompletedEvent;
 import com.rishit.payment_service.PAYMENT_SERVICE.producer.PaymentEventProducer;
-import com.rishit.payment_service.PAYMENT_SERVICE.event.OrderCreateEvent;
-import com.rishit.payment_service.PAYMENT_SERVICE.event.PaymentFailedEvent;
 import com.rishit.payment_service.PAYMENT_SERVICE.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +39,7 @@ public class PaymentService {
                             .orderId(event.getOrderId())
                             .userId(event.getUserId())
                             .amount(event.getAmount())
+                            .productId(event.getProductId())
                             .build()
             );
 
