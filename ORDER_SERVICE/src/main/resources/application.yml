@@ -1,32 +1,6 @@
-server:
-  port: 8081
-
-user:
-  service:
-    url: http://localhost:8083
-
 spring:
+  application:
+    name: order-service
 
-  datasource:
-    url: jdbc:mysql://localhost:3306/order_db
-    username: root
-    password: root
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
-  kafka:
-    bootstrap-servers: localhost:9092
-
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-    properties:
-      spring.json.add.type.headers: false
-
-logging:
-  level:
-    org.springframework.kafka: INFO
+  config:
+    import: configserver:http://localhost:8888

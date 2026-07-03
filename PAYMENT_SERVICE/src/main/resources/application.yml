@@ -1,36 +1,6 @@
-server:
-  port: 8082
-
 spring:
+  application:
+    name: payment-service
 
-  datasource:
-    url: jdbc:mysql://localhost:3306/payment_db
-    username: root
-    password: root
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
-  kafka:
-    bootstrap-servers: localhost:9092
-
-    consumer:
-      group-id: payment-group
-      auto-offset-reset: earliest
-
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-
-      properties:
-        spring.json.trusted.packages: "*"
-        spring.json.value.default.type: com.rishit.payment_service.PAYMENT_SERVICE.event.OrderCreateEvent
-
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-logging:
-  level:
-    org.springframework.kafka: INFO
+  config:
+    import: configserver:http://localhost:8888
