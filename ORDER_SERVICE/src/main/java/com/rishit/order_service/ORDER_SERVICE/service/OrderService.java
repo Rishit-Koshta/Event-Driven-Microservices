@@ -1,9 +1,6 @@
 package com.rishit.order_service.ORDER_SERVICE.service;
 
-
 import com.rishit.common.event.OrderCreateEvent;
-
-import com.rishit.order_service.ORDER_SERVICE.client.UserClient;
 import com.rishit.order_service.ORDER_SERVICE.dto.OrderRequest;
 import com.rishit.order_service.ORDER_SERVICE.dto.OrderResponse;
 import com.rishit.order_service.ORDER_SERVICE.dto.UserResponse;
@@ -24,12 +21,14 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderEventProducer producer;
-    private final UserClient userClient;
+    private final UserClientService userClientService;
 
     public OrderResponse createOrder(OrderRequest request){
 
         UserResponse user =
-                userClient.getUser(request.getUserId());
+                userClientService.getUser(
+                        request.getUserId()
+                );
 
         Order order = Order.builder()
                 .userId(request.getUserId())
