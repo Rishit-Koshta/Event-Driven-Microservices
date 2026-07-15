@@ -3,15 +3,25 @@ package com.rishit.common.event;
 
 import lombok.*;
 
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class OrderCreateEvent {
 
+
+    private String eventId;
+
+
     private Long orderId;
+
+
     private Long userId;
-    private Double amount;
+
+
     private Long productId;
+
+
+    private Double amount;
 }
