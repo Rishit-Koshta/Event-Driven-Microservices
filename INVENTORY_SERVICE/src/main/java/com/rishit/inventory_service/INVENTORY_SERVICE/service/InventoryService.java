@@ -1,5 +1,7 @@
 package com.rishit.inventory_service.INVENTORY_SERVICE.service;
 
+import com.rishit.inventory_service.INVENTORY_SERVICE.dto.InventoryRequest;
+import com.rishit.inventory_service.INVENTORY_SERVICE.dto.InventoryResponse;
 import com.rishit.inventory_service.INVENTORY_SERVICE.entity.Inventory;
 import com.rishit.inventory_service.INVENTORY_SERVICE.repository.InventoryRepository;
 import jakarta.transaction.Transactional;
@@ -12,23 +14,60 @@ public class InventoryService {
 
     private final InventoryRepository repository;
 
-    @Transactional
-    public boolean reserveStock(Long productId){
+    // Existing reserveStock() remains here
 
-        Inventory inventory = repository.findByProductId(productId)
-                .orElseThrow(() ->
-                        new RuntimeException("Product not found"));
 
-        if(inventory.getQuantity() <= 0){
-            return false;
+    public InventoryResponse addInventory(
+            InventoryRequest request
+    ) {
+
+        if (repository.findByProductId(request.getProductId()).isPresent()) {
+            throw new RuntimeException("Inventory already exists for this product.");
         }
 
-        inventory.setQuantity(
-                inventory.getQuantity() - 1
-        );
+        Inventory inventory = Inventory.builder()
+                .productId(request.getProductId())
+                .quantity(request.getQuantity())
+                .build();
 
         repository.save(inventory);
 
-        return true;
+        return InventoryResponse.builder()
+                .productId(inventory.getProductId())
+                .quantity(inventory.getQuantity())
+                .build();
+    }
+
+
+    public InventoryResponse getInventory(
+            Long productId
+    ) {
+
+        Inventory inventory = repository.findByProductId(productId)
+                .orElseThrow();
+
+        return InventoryResponse.builder()
+                .productId(inventory.getProductId())
+                .quantity(inventory.getQuantity())
+                .build();
+    }
+
+
+    public InventoryResponse updateInventory(
+            Long productId,
+            InventoryRequest request
+    ) {
+
+        Inventory inventory = repository.findByProductId(productId)
+                .orElseThrow();
+
+        inventory.setQuantity(request.getQuantity());
+
+        repository.save(inventory);
+
+        return InventoryResponse.builder()
+                .productId(inventory.getProductId())
+                .quantity(inventory.getQuantity())
+                .build();
     }
 }
